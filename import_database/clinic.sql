@@ -1,26 +1,25 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 30, 2019 at 10:48 AM
--- Server version: 5.6.12
--- PHP Version: 5.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Sep 05, 2024 at 08:56 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `clinic`
 --
-CREATE DATABASE IF NOT EXISTS `clinic` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `clinic`;
 
 -- --------------------------------------------------------
 
@@ -28,34 +27,33 @@ USE `clinic`;
 -- Table structure for table `excelfiles`
 --
 
-CREATE TABLE IF NOT EXISTS `excelfiles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `excelfiles` (
+  `id` int(11) NOT NULL,
   `ids` varchar(30) NOT NULL,
   `PaymentP` varchar(30) NOT NULL,
   `name` varchar(1000) NOT NULL,
   `type` varchar(30) NOT NULL,
   `Size` decimal(10,0) NOT NULL,
-  `content` longblob NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `content` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `excelfiles`
 --
 
 INSERT INTO `excelfiles` (`id`, `ids`, `PaymentP`, `name`, `type`, `Size`, `content`) VALUES
-(1, '1', 'Administrator.php', 'drugs.csv', 'application/vnd.ms-excel', '76', ''),
-(2, '2', 'Administrator.php', 'patients.csv', 'application/vnd.ms-excel', '76', '');
-INSERT INTO `excelfiles` (`id`, `ids`, `PaymentP`, `name`, `type`, `Size`, `content`) VALUES
-(3, '3', 'Administrator.php', 'clinicuserguide.pdf', 'application/pdf', '678','');
+(1, '1', 'Administrator.php', 'drugs.csv', 'application/vnd.ms-excel', 76, ''),
+(2, '2', 'Administrator.php', 'patients.csv', 'application/vnd.ms-excel', 76, ''),
+(3, '3', 'Administrator.php', 'clinicuserguide.pdf', 'application/pdf', 678, '');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `tbl_drugs`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_drugs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_drugs` (
+  `id` int(11) NOT NULL,
   `Name` varchar(300) NOT NULL,
   `DOE` varchar(300) NOT NULL,
   `Quantity` varchar(300) NOT NULL,
@@ -64,9 +62,8 @@ CREATE TABLE IF NOT EXISTS `tbl_drugs` (
   `RetailPrice` varchar(300) NOT NULL,
   `Strength` varchar(300) NOT NULL,
   `Medstype` varchar(300) NOT NULL,
-  `Marker` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+  `Marker` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_drugs`
@@ -89,12 +86,11 @@ INSERT INTO `tbl_drugs` (`id`, `Name`, `DOE`, `Quantity`, `Drugsremain`, `Purcha
 -- Table structure for table `tbl_icd10`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_icd10` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_icd10` (
+  `id` int(11) NOT NULL,
   `Diagnosisname` varchar(3000) NOT NULL,
-  `Diagnosiscode` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `Diagnosiscode` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_icd10`
@@ -113,8 +109,8 @@ INSERT INTO `tbl_icd10` (`id`, `Diagnosisname`, `Diagnosiscode`) VALUES
 -- Table structure for table `tbl_laboratory`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_laboratory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_laboratory` (
+  `id` int(11) NOT NULL,
   `Patientid` varchar(30) NOT NULL,
   `Diseased` varchar(3000) NOT NULL,
   `Test_RBS` varchar(3000) NOT NULL,
@@ -131,9 +127,8 @@ CREATE TABLE IF NOT EXISTS `tbl_laboratory` (
   `Results` varchar(3000) NOT NULL,
   `Officer` varchar(300) NOT NULL,
   `Date` varchar(30) NOT NULL,
-  `Status` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+  `Status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_laboratory`
@@ -152,7 +147,8 @@ INSERT INTO `tbl_laboratory` (`id`, `Patientid`, `Diseased`, `Test_RBS`, `Test_F
 (15, '11', 'Malaria', '', '', '', '', '', 'FBC', '', '', 'Headache', 'Fever', 'hsghghsg', 'tests positive', 'Mr Patrick Mvuma', '19-04-13', 'Closed'),
 (16, '10', 'Bacteria Infection', '', '', '', '', '', 'FBC', '', '', 'Vomiting', 'Severe headache', 'Check blood', 'the test was positive', 'Mr Patrick Mvuma', '19-04-13', 'Closed'),
 (17, '13', 'Bacteria Infection', '', '', '', '', '', 'FBC', 'TFT', 'LFT', 'malaria', 'the patient a', 'try the following', 'the patient has been fount with malaria', 'Mr Patrick Mvuma', '19-07-29', 'Closed'),
-(18, '14', 'Malaria', '', '', '', '', 'MRDT', 'FBC', '', '', 'My head hurts and i got fever', 'It started yesterday and it has been severe since then', 'Test her blood for Malaria', 'according to my findings the patient blood test positive to malaria', 'Mr Patrick Mvuma', '19-07-30', 'Closed');
+(18, '14', 'Malaria', '', '', '', '', 'MRDT', 'FBC', '', '', 'My head hurts and i got fever', 'It started yesterday and it has been severe since then', 'Test her blood for Malaria', 'according to my findings the patient blood test positive to malaria', 'Mr Patrick Mvuma', '19-07-30', 'Closed'),
+(19, '14', '', 'RBS', 'FBS', 'PBS', 'UCT', '', '', '', '', '', '', '', '', 'Mr Samuel Oluwadare', '24-09-05', '');
 
 -- --------------------------------------------------------
 
@@ -160,8 +156,8 @@ INSERT INTO `tbl_laboratory` (`id`, `Patientid`, `Diseased`, `Test_RBS`, `Test_F
 -- Table structure for table `tbl_labresults`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_labresults` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_labresults` (
+  `id` int(11) NOT NULL,
   `Patientid` varchar(30) NOT NULL,
   `Testid` varchar(30) NOT NULL,
   `Status` varchar(30) NOT NULL,
@@ -182,9 +178,8 @@ CREATE TABLE IF NOT EXISTS `tbl_labresults` (
   `Test_LFT` varchar(3000) NOT NULL,
   `LFT_Comment` varchar(3000) NOT NULL,
   `Officer` varchar(300) NOT NULL,
-  `Date` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+  `Date` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_labresults`
@@ -211,16 +206,15 @@ INSERT INTO `tbl_labresults` (`id`, `Patientid`, `Testid`, `Status`, `Test_FBS`,
 -- Table structure for table `tbl_managementplan`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_managementplan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_managementplan` (
+  `id` int(11) NOT NULL,
   `Resultsid` varchar(3000) NOT NULL,
   `Patientid` varchar(30) NOT NULL,
   `Management_plan` varchar(3000) NOT NULL,
   `Date` varchar(30) NOT NULL,
   `Status` varchar(3000) NOT NULL,
-  `Plan` varchar(3000) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+  `Plan` varchar(3000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_managementplan`
@@ -252,8 +246,8 @@ INSERT INTO `tbl_managementplan` (`id`, `Resultsid`, `Patientid`, `Management_pl
 -- Table structure for table `tbl_petients`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_petients` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_petients` (
+  `id` int(11) NOT NULL,
   `Mtitle` varchar(30) NOT NULL,
   `Firstname` varchar(300) NOT NULL,
   `Middlename` varchar(300) NOT NULL,
@@ -268,28 +262,27 @@ CREATE TABLE IF NOT EXISTS `tbl_petients` (
   `Status` varchar(300) NOT NULL,
   `Status2` varchar(30) NOT NULL,
   `Date` varchar(300) NOT NULL,
-  `Payment` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `Payment` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_petients`
 --
 
 INSERT INTO `tbl_petients` (`id`, `Mtitle`, `Firstname`, `Middlename`, `Sirname`, `Gender`, `Phone`, `NextKphone`, `DOB`, `Location`, `Relation`, `Guardian`, `Status`, `Status2`, `Date`, `Payment`) VALUES
-(1, 'Mr', 'Eugene', 'Judza', 'Dzanjalimodzi', 'Male', '26588810635', '26589927365', '1994-09-15', 'Area 47 ', 'Sister', 'Sangwani Dzanja', 'Treated', '', '04-04-19', 'CASH'),
-(2, 'Miss', 'Wendy', 'Wee', 'Mvuma', 'Female', '26599273553', '265999107524', '2007-05-24', 'Area 49', 'Mother', 'Mwandida Mvuma', 'Pharmacy', 'Admission', '04-04-19', 'CASH'),
-(3, 'Mr', 'James', 'Jay', 'Mtemwende', 'Male', '26357449976', '253674486645', '2006-02-02', 'Area 25', 'Brother', 'Patrick Mtemwende', 'Treated', 'Treated', '04-04-19', 'CASH'),
-(4, 'Mr', 'Damison', 'Dam', 'Kathyola', 'Male', '2650886353', '26582353462', '1995-04-13', 'Area 6', 'Wife', 'Mary Kathyola', 'Treated', '', '04-04-19', 'SCHEME'),
-(5, 'Mr', 'Joe', 'J', 'Kajombo', 'Male', '123764873787', '35737367', '1972-04-06', 'Kanjedza', 'Brother', 'Ted Kajombo', 'Treated', 'Treated', '05-04-19', 'CASH'),
-(6, 'Mr', 'Maxmos', 'Maxy', 'Maposa', 'Male', '26588826374', '26587366472', '1983-03-10', 'Kanjedza', 'Father', 'George Maposa', 'Treated', '', '05-04-19', 'CASH'),
-(7, 'Mr', 'Dziko', 'Honcho', 'Ntaba', 'Male', '265888234567', '265999105687', '1997-05-15', 'Area 49', 'Sister', 'Mercy Ntaba', 'Treated', 'Treated', '09-04-19', 'CASH'),
-(8, 'Miss', 'Monica', 'Mandy', 'Mand', 'Female', '2653845353', '2343366', '2014-04-04', 'Area 43', 'Sister', 'Maria', 'Pharmacy', 'Admission', '09-04-19', 'SCHEME'),
-(10, 'Mr', 'Maxwell', 'Peter', 'Banda', 'Male', '23464644', '24644474', '2013-03-14', 'Area 23', 'Sister', 'Mercy Gondwe', 'Treated', 'Treated', '09-04-19', 'SCHEME'),
-(11, 'Miss', 'Glory', 'Gl', 'Bandawe', 'Female', '26588810635', '26588128363', '2012-03-15', 'Area 49', 'Sister', 'Petience Banda', 'Consultation', 'Treated', '13-04-19', 'CASH'),
-(12, 'Mrs', 'Chimango', 'Chims', 'Banda', 'Female', '2334554', '3655363', '2018-04-05', 'Area 23', 'Sister', 'Grace banda', '', '', '13-04-19', 'CASH'),
-(13, 'Mr', 'James', 'Jamie', 'Kapondera', 'Male', '26599946', '2659990000', '2016-07-13', 'Bwandilo', 'Auncle', 'Mary Mphande', 'Treated', 'Treated', '29-07-19', 'CASH'),
-(14, 'Miss', 'Chrity', 'Cha', 'Joloza', 'Female', '26599910728', '26588882526', '1992-06-10', 'Balaka', 'Sister', 'Janet Joloza', 'Treated', 'Treated', '30-07-19', 'CASH');
+(1, 'Mr', 'Abebi', 'Judza', 'Abiona ', 'Male', '26588810635', '26589927365', '1994-09-15', 'Area 47 ', 'Sister', 'Sangwani Dzanja', 'Treated', '', '04-04-19', 'CASH'),
+(2, 'Miss', 'Morenikeji ', 'Wee', 'Adaego ', 'Female', '26599273553', '265999107524', '2007-05-24', 'Area 49', 'Mother', 'Mwandida Mvuma', 'Pharmacy', 'Admission', '04-04-19', 'CASH'),
+(3, 'Mr', 'Olumoroti ', 'Jay', 'Adaoma ', 'Male', '26357449976', '253674486645', '2006-02-02', 'Area 25', 'Brother', 'Patrick Mtemwende', 'Treated', 'Treated', '04-04-19', 'CASH'),
+(4, 'Mr', 'Damison', 'Dam', 'Oladayo ', 'Male', '2650886353', '26582353462', '1995-04-13', 'Area 6', 'Wife', 'Mary Kathyola', 'Treated', '', '04-04-19', 'SCHEME'),
+(5, 'Mr', 'Olayinka ', 'J', 'Addana ', 'Male', '123764873787', '35737367', '1972-04-06', 'Kanjedza', 'Brother', 'Ted Kajombo', 'Treated', 'Treated', '05-04-19', 'CASH'),
+(6, 'Mr', 'Maxmos', 'Maxy', 'Adebola ', 'Male', '26588826374', '26587366472', '1983-03-10', 'Kanjedza', 'Father', 'George Maposa', 'Consultation', '', '05-04-19', 'CASH'),
+(7, 'Mr', 'Olusola', 'Honcho', 'Adesewa ', 'Male', '265888234567', '265999105687', '1997-05-15', 'Area 49', 'Sister', 'Mercy Ntaba', 'Treated', 'Treated', '09-04-19', 'CASH'),
+(8, 'Miss', 'Monica', 'Mandy', 'Adunni ', 'Female', '2653845353', '2343366', '2014-04-04', 'Area 43', 'Sister', 'Maria', 'Pharmacy', 'Admission', '09-04-19', 'SCHEME'),
+(10, 'Mr', 'Toki ', 'Peter', 'Malomo ', 'Male', '23464644', '24644474', '2013-03-14', 'Area 23', 'Sister', 'Mercy Gondwe', 'Treated', 'Treated', '09-04-19', 'SCHEME'),
+(11, 'Miss', 'Omodesola ', 'Gl', 'Mabayoje ', 'Female', '26588810635', '26588128363', '2012-03-15', 'Area 49', 'Sister', 'Petience Banda', 'Consultation', 'Treated', '13-04-19', 'CASH'),
+(12, 'Mrs', 'Chimango', 'Chims', 'Mayowa ', 'Female', '2334554', '3655363', '2018-04-05', 'Area 23', 'Sister', 'Grace banda', '', '', '13-04-19', 'CASH'),
+(13, 'Mr', 'James', 'Jamie', 'Mobolaji ', 'Male', '26599946', '2659990000', '2016-07-13', 'Bwandilo', 'Auncle', 'Mary Mphande', 'Consultation', 'Treated', '29-07-19', 'CASH'),
+(14, 'Miss', 'Tejumola ', 'Cha', 'Olabisi ', 'Female', '26599910728', '26588882526', '1992-06-10', 'Balaka', 'Sister', 'Janet Joloza', 'Laboratory', 'Treated', '30-07-19', 'CASH');
 
 -- --------------------------------------------------------
 
@@ -297,8 +290,8 @@ INSERT INTO `tbl_petients` (`id`, `Mtitle`, `Firstname`, `Middlename`, `Sirname`
 -- Table structure for table `tbl_readings`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_readings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_readings` (
+  `id` int(11) NOT NULL,
   `Patientid` varchar(30) NOT NULL,
   `Date` varchar(300) NOT NULL,
   `Time` varchar(300) NOT NULL,
@@ -307,9 +300,8 @@ CREATE TABLE IF NOT EXISTS `tbl_readings` (
   `RespirationRate` varchar(3000) NOT NULL,
   `SystolicBP` varchar(3000) NOT NULL,
   `DiastolicBP` varchar(3000) NOT NULL,
-  `Oxygensaturation` varchar(3000) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `Oxygensaturation` varchar(3000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_readings`
@@ -325,8 +317,8 @@ INSERT INTO `tbl_readings` (`id`, `Patientid`, `Date`, `Time`, `BodyT`, `PulseRa
 -- Table structure for table `tbl_transactions`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_transactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_transactions` (
+  `id` int(11) NOT NULL,
   `Patientid` varchar(30) NOT NULL,
   `Drugname` varchar(3000) NOT NULL,
   `Quantity` varchar(3000) NOT NULL,
@@ -339,9 +331,8 @@ CREATE TABLE IF NOT EXISTS `tbl_transactions` (
   `Payment` varchar(300) NOT NULL,
   `Scheme_id` varchar(300) NOT NULL,
   `Date` varchar(300) NOT NULL,
-  `Time` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+  `Time` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_transactions`
@@ -382,8 +373,8 @@ INSERT INTO `tbl_transactions` (`id`, `Patientid`, `Drugname`, `Quantity`, `Amou
 -- Table structure for table `tbl_treatment`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_treatment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_treatment` (
+  `id` int(11) NOT NULL,
   `Resultsid` varchar(3000) NOT NULL,
   `Patientid` varchar(30) NOT NULL,
   `Drugid` varchar(3000) NOT NULL,
@@ -396,9 +387,8 @@ CREATE TABLE IF NOT EXISTS `tbl_treatment` (
   `Officer` varchar(3000) NOT NULL,
   `Status` varchar(3000) NOT NULL,
   `Plan` varchar(3000) NOT NULL,
-  `Progress` varchar(3000) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+  `Progress` varchar(3000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_treatment`
@@ -439,23 +429,25 @@ INSERT INTO `tbl_treatment` (`id`, `Resultsid`, `Patientid`, `Drugid`, `Quantity
 -- Table structure for table `tbl_userlogs`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_userlogs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_userlogs` (
+  `id` int(11) NOT NULL,
   `Userid` varchar(300) NOT NULL,
   `Machineip` varchar(300) NOT NULL,
   `Login` varchar(300) NOT NULL,
   `Logout` varchar(300) NOT NULL,
   `Activities` varchar(3000) NOT NULL,
-  `Count` varchar(3000) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `Count` varchar(3000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_userlogs`
 --
 
 INSERT INTO `tbl_userlogs` (`id`, `Userid`, `Machineip`, `Login`, `Logout`, `Activities`, `Count`) VALUES
-(1, '6', '56-4B-F5-31-2E-9F', '30-07-2019 10:35:56 AM', '30-07-2019 12:43:57 PM', '', '0');
+(1, '6', '56-4B-F5-31-2E-9F', '30-07-2019 10:35:56 AM', '30-07-2019 12:43:57 PM', '', '0'),
+(2, '6', 'E1-K5-W3-R6-D1-I8', '05-09-2024 07:17:38 PM', '', '', '0'),
+(3, '6', 'P3-G3-W5-R7-N0-H7', '05-09-2024 07:33:48 PM', '', '', '0'),
+(4, '6', 'C6-M7-T0-O6-T1-W0', '05-09-2024 08:35:15 PM', '', 'Patient Chrity Joloza sent to consultation\nPatient Maxmos Adebola  sent to consultation\nPatient James Mobolaji  sent to consultation\nPatient Tejumola  Olabisi  sent to lab', '4');
 
 -- --------------------------------------------------------
 
@@ -463,8 +455,8 @@ INSERT INTO `tbl_userlogs` (`id`, `Userid`, `Machineip`, `Login`, `Logout`, `Act
 -- Table structure for table `tbl_userprivilages`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_userprivilages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_userprivilages` (
+  `id` int(11) NOT NULL,
   `Userid` varchar(30) NOT NULL,
   `Adduser` varchar(3000) NOT NULL,
   `Manageuser` varchar(3000) NOT NULL,
@@ -480,9 +472,8 @@ CREATE TABLE IF NOT EXISTS `tbl_userprivilages` (
   `Managedrugs` varchar(30) NOT NULL,
   `Todayssales` varchar(3000) NOT NULL,
   `Todaystreat` varchar(300) NOT NULL,
-  `Monthlyreport` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `Monthlyreport` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_userprivilages`
@@ -498,8 +489,8 @@ INSERT INTO `tbl_userprivilages` (`id`, `Userid`, `Adduser`, `Manageuser`, `Loga
 -- Table structure for table `tbl_users`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_users` (
+  `id` int(11) NOT NULL,
   `Firstname` varchar(300) NOT NULL,
   `Sirname` varchar(300) NOT NULL,
   `Mtitle` varchar(30) NOT NULL,
@@ -510,17 +501,16 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `Role` varchar(30) NOT NULL,
   `State` varchar(30) NOT NULL,
   `Online` varchar(300) NOT NULL,
-  `Time` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `Time` bigint(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`id`, `Firstname`, `Sirname`, `Mtitle`, `Pic_name`, `Phone`, `Email`, `Password`, `Role`, `State`, `Online`, `Time`) VALUES
-(6, 'Patrick', 'Mvuma', 'Mr', '', '2659992865', 'test@clinic.com', '1234554321', 'System Developer', 'Super', 'Offline', 1564482956),
-(8, 'Anderson', 'Banda', 'Mr', '', '2659999107725', 'anderson@gmail.com', '90000', 'Medical Doctor', '', 'Offline', 0);
+(6, 'Samuel', 'Oluwadare', 'Mr', '', '2659992865', 'test@clinic.com', '1234554321', 'System Developer', 'Super', 'Online', 1725561315),
+(8, 'Tomiwa', 'Oluwadare', 'Mr', '', '2659999107725', 'anderson@gmail.com', '90000', 'Medical Doctor', '', 'Offline', 0);
 
 -- --------------------------------------------------------
 
@@ -528,16 +518,15 @@ INSERT INTO `tbl_users` (`id`, `Firstname`, `Sirname`, `Mtitle`, `Pic_name`, `Ph
 -- Table structure for table `tbl_vendors`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_vendors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_vendors` (
+  `id` int(11) NOT NULL,
   `Fullname` varchar(300) NOT NULL,
   `Location` varchar(300) NOT NULL,
   `Phone` varchar(300) NOT NULL,
   `Email` varchar(300) NOT NULL,
   `DOP` varchar(300) NOT NULL,
-  `Drugid` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `Drugid` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tbl_vendors`
@@ -552,10 +541,184 @@ INSERT INTO `tbl_vendors` (`id`, `Fullname`, `Location`, `Phone`, `Email`, `DOP`
 (8, 'Intermed', 'Lilongwe', '017500035', 'info@intermedmw.com', '2018-01-07', '6'),
 (9, 'Intermed', 'Lilongwe', '26543338163', 'medicalstore@gmail.com', '2019-04-24', '7'),
 (10, 'Medicines', 'Chilambula', '253533', 'mvumaparick@yahoo.com', '19/04/23', '8'),
-(11, 'Medicines', 'Kanjedza', '2535342233', 'mvumaparick@yahoo.com', '19/05/24', '9'),
-(12, '', '', '', '', '', '10'),
-(13, '', '', '', '', '', '11'),
-(14, '', '', '', '', '', '12');
+(11, 'Medicines', 'Kanjedza', '2535342233', 'mvumaparick@yahoo.com', '19/05/24', '9');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `excelfiles`
+--
+ALTER TABLE `excelfiles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_drugs`
+--
+ALTER TABLE `tbl_drugs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_icd10`
+--
+ALTER TABLE `tbl_icd10`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_laboratory`
+--
+ALTER TABLE `tbl_laboratory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_labresults`
+--
+ALTER TABLE `tbl_labresults`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_managementplan`
+--
+ALTER TABLE `tbl_managementplan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_petients`
+--
+ALTER TABLE `tbl_petients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_readings`
+--
+ALTER TABLE `tbl_readings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_transactions`
+--
+ALTER TABLE `tbl_transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_treatment`
+--
+ALTER TABLE `tbl_treatment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_userlogs`
+--
+ALTER TABLE `tbl_userlogs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_userprivilages`
+--
+ALTER TABLE `tbl_userprivilages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_vendors`
+--
+ALTER TABLE `tbl_vendors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `excelfiles`
+--
+ALTER TABLE `excelfiles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_drugs`
+--
+ALTER TABLE `tbl_drugs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `tbl_icd10`
+--
+ALTER TABLE `tbl_icd10`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_laboratory`
+--
+ALTER TABLE `tbl_laboratory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tbl_labresults`
+--
+ALTER TABLE `tbl_labresults`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `tbl_managementplan`
+--
+ALTER TABLE `tbl_managementplan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `tbl_petients`
+--
+ALTER TABLE `tbl_petients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `tbl_readings`
+--
+ALTER TABLE `tbl_readings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_transactions`
+--
+ALTER TABLE `tbl_transactions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `tbl_treatment`
+--
+ALTER TABLE `tbl_treatment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `tbl_userlogs`
+--
+ALTER TABLE `tbl_userlogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_userprivilages`
+--
+ALTER TABLE `tbl_userprivilages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tbl_vendors`
+--
+ALTER TABLE `tbl_vendors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

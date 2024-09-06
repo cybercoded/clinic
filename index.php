@@ -56,8 +56,8 @@ if(isset($_GET['gs']))
 <nav class="navbar navbar-inverse" style="margin-top:5px;background-color:white">
     <div class="container-fluid">
      <div class="banner">
-<div style="color:red;margin-left:250px;margin-bottom:50px;margin-top:20px;font-size:30px;font-family:Dr Mlombe;">Patrick Mvuma Electronic Medical Records System</div>
-                    <center><img src="img/IMG-20160719-WA0007.jpg"  style="position:absolute;margin-top:-5%;border-radius:100%;width:90px"></center>
+<div style="color:red;margin-left:250px;margin-bottom:50px;margin-top:20px;font-size:30px;font-family:Dr Mlombe;">Adebanjo Electronic Medical Records System</div>
+                    <center><img src="img/favicon.png"  style="position:absolute;margin-top:-5%;border-radius:100%;width:90px"></center>
 
                </div> 
      

@@ -3818,7 +3818,7 @@ $(document).on("click", ".recordpatient", function () { //user clicks on button
       
            
 			<center>	
-				<img src="img/IMG-20160719-WA0007.jpg"  style="margin-top:20px;width:90px;border-radius:100%">
+				<img src="img/favicon.png"  style="margin-top:20px;width:90px;border-radius:100%">
 			</center>	   
                            </div>
         
@@ -3826,7 +3826,7 @@ $(document).on("click", ".recordpatient", function () { //user clicks on button
             <ul class="sidebar-menu">
               <li class="header" style="margin-top:10px">
               	
-              	 <h4>PATRICK ELECTRONIC MEDICAL RECORDS</h4>
+              	 <h4>ADEBANJO ELECTRONIC MEDICAL RECORDS</h4>
               </li>
                 <?php
                
